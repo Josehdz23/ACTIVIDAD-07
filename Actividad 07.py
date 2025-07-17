@@ -33,6 +33,12 @@ def registrar_Estudiantes():
                                 break
                             else:
                                 print("\nEl nombre de la carrera no es valida, reintente")
+                        estudiantes[carnet] = {
+                            "Nombre": nombre,
+                            "Edad": edad,
+                            "Carrera": carrera,
+                            "Cursos": {}
+                        }
                         while True:
                             try:
                                 cursos = int(input(f"Ingrese cuantos cursos se le agregaran al estudiante {i + 1}: "))
@@ -44,48 +50,55 @@ def registrar_Estudiantes():
                                         else:
                                             print("\nEl nombre del curso no es valido, reintente")
                                     while True:
-                                        notaTareas = float(input(f"Ingrese la nota del curso {j + 1}: "))
+                                        notaTareas = float(input(f"Ingrese la nota de las tareas del curso {j + 1}: "))
                                         if notaTareas > 0 and notaTareas < 30:
                                             break
                                         else:
                                             print("\nLa nota de las tareas no es valida, reintente")
                                     while True:
-                                        notaParcial = float(input(f"Ingrese la nota del curso {j + 1}: "))
+                                        notaParcial = float(input(f"Ingrese la nota del parcial del curso {j + 1}: "))
                                         if notaParcial > 0 and notaParcial < 30:
                                             break
                                         else:
                                             print("\nLa nota del parcial no es valida, reintente")
                                     while True:
-                                        notaProyecto = float(input(f"Ingrese la nota del curso {j + 1}: "))
+                                        notaProyecto = float(input(f"Ingrese la nota del proyecto del curso {j + 1}: "))
                                         if notaProyecto > 0 and notaProyecto < 40:
                                             break
                                         else:
                                             print("\nLa nota del proyecto no es valida, reintente")
-                                    estudiantes[carnet] = {
-                                        "Nombre": nombre,
-                                        "Edad": edad,
-                                        "Carrera": carrera,
-                                        "Cursos":{
-                                            "Nombre Curso":{
-                                                "Notas Tareas":notaTareas,
-                                                "Notas Parcial":notaParcial,
-                                                "Notas Proyecto":notaProyecto
-                                            }
-                                        }
+                                    estudiantes[carnet]["Cursos"][nombreCurso] = {
+                                        "Notas Tareas": notaTareas,
+                                        "Notas Parcial": notaParcial,
+                                        "Notas Proyecto": notaProyecto
                                     }
+                                break
                             except Exception as ex3:
                                 print(f"\nOcurrió un error: {ex3}, reintente")
                     except Exception as ex2:
                         print(f"\nOcurrió un error: {ex2}, reintente")
+            break
         except Exception as ex:
             print(f"\nOcurrió un error: {ex}, reintente")
 
 def mostrar_estudiantes():
+    x = "Mate"
+    estudiantes[123] = {
+        "Nombre": "Jose",
+        "Edad": 20,
+        "Carrera": "Sistemas",
+        "Cursos": {}
+    }
+    estudiantes[123]["Cursos"][x] = {
+        "Nombre Curso": x,
+        "Notas Tareas": 21,
+        "Notas Parcial": 25,
+        "Notas Proyecto": 32
+    }
     for clave, datos in estudiantes.items():
         print(f"Carnet: {clave}, Nombre: {datos['Nombre']}, Edad: {datos['Edad']}, Carrera: {datos['Carrera']}\nCursos: ")
-        for dato in datos['Cursos']:
-            print(f"Nombre Curso: {datos['Cursos']["Nombre Curso"]}")
-            print(f"Nota de tareas: {datos['Cursos']["Nota Tareas"]}\nNota Parcial: {datos['Cursos']["Nota Parcial"]}\nNota Proyecto: {datos['Cursos']["Nota Proyecto"]}")
+        for clave2 in datos["Cursos"]:
+            print(f"Nombre curso: {datos[clave2]}, Nota Tareas: {datos["Cursos"][clave2]["Notas Tareas"]}, Nota Parcial: {datos["Cursos"][clave2]["Notas Parcial"]}, Nota Proyecto: {datos["Cursos"][clave2]["Notas Proyecto"]}")
 
 def main():
     while True:

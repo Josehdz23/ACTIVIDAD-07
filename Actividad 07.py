@@ -90,15 +90,14 @@ def mostrar_estudiantes():
         "Cursos": {}
     }
     estudiantes[123]["Cursos"][x] = {
-        "Nombre Curso": x,
         "Notas Tareas": 21,
         "Notas Parcial": 25,
         "Notas Proyecto": 32
     }
     for clave, datos in estudiantes.items():
         print(f"Carnet: {clave}, Nombre: {datos['Nombre']}, Edad: {datos['Edad']}, Carrera: {datos['Carrera']}\nCursos: ")
-        for clave2 in datos["Cursos"]:
-            print(f"Nombre curso: {datos[clave2]}, Nota Tareas: {datos["Cursos"][clave2]["Notas Tareas"]}, Nota Parcial: {datos["Cursos"][clave2]["Notas Parcial"]}, Nota Proyecto: {datos["Cursos"][clave2]["Notas Proyecto"]}")
+        for clave2, datos2 in datos["Cursos"].items():
+            print(f"Nombre curso: {clave2}, Nota Tareas: {datos2["Notas Tareas"]}, Nota Parcial: {datos2["Notas Parcial"]}, Nota Proyecto: {datos2["Notas Proyecto"]}")
 
 def main():
     while True:
